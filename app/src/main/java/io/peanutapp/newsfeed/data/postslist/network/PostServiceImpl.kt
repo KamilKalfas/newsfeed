@@ -1,7 +1,6 @@
-package io.peanutapp.newsfeed.data.network
+package io.peanutapp.newsfeed.data.postslist.network
 
-import io.peanutapp.newsfeed.data.entity.FeedResponse
-import io.peanutapp.newsfeed.data.network.PostsApi
+import io.peanutapp.newsfeed.data.postslist.entity.FeedResponse
 import io.peanutapp.newsfeed.domain.network.PostsService
 
 class PostsServiceImpl(

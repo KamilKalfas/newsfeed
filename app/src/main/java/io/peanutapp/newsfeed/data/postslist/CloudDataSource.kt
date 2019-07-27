@@ -1,7 +1,8 @@
-package io.peanutapp.newsfeed.domain
+package io.peanutapp.newsfeed.data.postslist
 
-import io.peanutapp.newsfeed.data.entity.toPost
-import io.peanutapp.newsfeed.domain.entity.Post
+import io.peanutapp.newsfeed.data.postslist.entity.toPost
+import io.peanutapp.newsfeed.domain.PostsDataSource
+import io.peanutapp.newsfeed.domain.postslist.entity.Post
 import io.peanutapp.newsfeed.domain.network.PostsService
 
 class CloudDataSource(

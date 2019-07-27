@@ -1,4 +1,4 @@
-package io.peanutapp.newsfeed.data.network
+package io.peanutapp.newsfeed.data.postslist.network
 
 import io.peanutapp.newsfeed.domain.network.AUTHORIZATION_HEADER
 import io.peanutapp.newsfeed.domain.network.AuthPolicy

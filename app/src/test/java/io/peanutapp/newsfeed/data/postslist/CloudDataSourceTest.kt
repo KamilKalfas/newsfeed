@@ -1,12 +1,13 @@
-package io.peanutapp.newsfeed.domain
+package io.peanutapp.newsfeed.data.postslist
 
 import io.mockk.every
 import io.mockk.slot
 import io.mockk.verify
 import io.peanutapp.newsfeed.BaseTest
-import io.peanutapp.newsfeed.data.entity.FeedResponse
-import io.peanutapp.newsfeed.data.entity.Paging
-import io.peanutapp.newsfeed.data.entity.PostEntity
+import io.peanutapp.newsfeed.data.postslist.CloudDataSource
+import io.peanutapp.newsfeed.data.postslist.entity.FeedResponse
+import io.peanutapp.newsfeed.data.postslist.entity.Paging
+import io.peanutapp.newsfeed.data.postslist.entity.PostEntity
 import io.peanutapp.newsfeed.domain.network.PostsService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test

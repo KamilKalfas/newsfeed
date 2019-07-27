@@ -1,4 +1,4 @@
-package io.peanutapp.newsfeed.data.network
+package io.peanutapp.newsfeed.data.postslist.network
 
 import io.mockk.verify
 import io.peanutapp.newsfeed.BaseTest

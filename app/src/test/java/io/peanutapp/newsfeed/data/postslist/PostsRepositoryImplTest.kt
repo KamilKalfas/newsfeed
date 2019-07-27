@@ -1,9 +1,10 @@
-package io.peanutapp.newsfeed.data
+package io.peanutapp.newsfeed.data.postslist
 
 import io.mockk.every
 import io.mockk.slot
 import io.mockk.verify
 import io.peanutapp.newsfeed.BaseTest
+import io.peanutapp.newsfeed.data.postslist.PostsRepositoryImpl
 import io.peanutapp.newsfeed.domain.PostsDataSource
 import io.peanutapp.newsfeed.domain.PostsDataSourceFactory
 import org.assertj.core.api.Assertions.assertThat

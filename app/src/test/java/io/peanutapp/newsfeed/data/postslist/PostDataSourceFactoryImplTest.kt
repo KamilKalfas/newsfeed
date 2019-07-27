@@ -1,7 +1,6 @@
-package io.peanutapp.newsfeed.data
+package io.peanutapp.newsfeed.data.postslist
 
 import io.peanutapp.newsfeed.BaseTest
-import io.peanutapp.newsfeed.domain.CloudDataSource
 import io.peanutapp.newsfeed.domain.network.PostsService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test

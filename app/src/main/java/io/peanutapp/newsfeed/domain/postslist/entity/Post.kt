@@ -1,4 +1,4 @@
-package io.peanutapp.newsfeed.domain.entity
+package io.peanutapp.newsfeed.domain.postslist.entity
 
 data class Post(
     val author: String,

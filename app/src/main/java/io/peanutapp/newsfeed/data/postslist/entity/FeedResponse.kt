@@ -1,4 +1,4 @@
-package io.peanutapp.newsfeed.data.entity
+package io.peanutapp.newsfeed.data.postslist.entity
 
 /**
  * {

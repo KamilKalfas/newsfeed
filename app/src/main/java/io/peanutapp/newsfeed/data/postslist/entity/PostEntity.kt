@@ -1,6 +1,6 @@
-package io.peanutapp.newsfeed.data.entity
+package io.peanutapp.newsfeed.data.postslist.entity
 
-import io.peanutapp.newsfeed.domain.entity.Post
+import io.peanutapp.newsfeed.domain.postslist.entity.Post
 
 
 data class PostEntity(

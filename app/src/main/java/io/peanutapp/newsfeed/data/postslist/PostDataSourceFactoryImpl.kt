@@ -1,6 +1,5 @@
-package io.peanutapp.newsfeed.data
+package io.peanutapp.newsfeed.data.postslist
 
-import io.peanutapp.newsfeed.domain.CloudDataSource
 import io.peanutapp.newsfeed.domain.PostsDataSource
 import io.peanutapp.newsfeed.domain.PostsDataSourceFactory
 import io.peanutapp.newsfeed.domain.network.PostsService

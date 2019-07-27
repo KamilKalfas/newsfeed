@@ -1,4 +1,4 @@
-package io.peanutapp.newsfeed.data.network
+package io.peanutapp.newsfeed.data.postslist.network
 
 import io.peanutapp.newsfeed.core.CredentialsPrefs
 import io.peanutapp.newsfeed.domain.network.CredentialsProvider
