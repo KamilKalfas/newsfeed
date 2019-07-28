@@ -6,6 +6,7 @@ import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import io.peanutapp.newsfeed.core.network.NetworkModule
 import io.peanutapp.newsfeed.presentation.core.EmptyActivityBuilder
+import io.peanutapp.newsfeed.presentation.login.LoginActivityBuilder
 import javax.inject.Singleton
 
 @Singleton
@@ -14,7 +15,8 @@ import javax.inject.Singleton
         AndroidSupportInjectionModule::class,
         ApplicationModule::class,
         NetworkModule::class,
-        EmptyActivityBuilder::class
+        EmptyActivityBuilder::class,
+        LoginActivityBuilder::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<PostsApplication> {

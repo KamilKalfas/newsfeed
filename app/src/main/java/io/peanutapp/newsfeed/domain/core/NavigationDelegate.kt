@@ -1,7 +1,7 @@
 package io.peanutapp.newsfeed.domain.core
 
-import android.content.Context
 import android.content.Intent
+import io.peanutapp.newsfeed.core.application.IntentFactory
 import io.peanutapp.newsfeed.domain.login.SessionDelegate
 import io.peanutapp.newsfeed.presentation.login.LoginActivity
 import io.peanutapp.newsfeed.presentation.postslist.PostsListActivity
@@ -12,12 +12,12 @@ interface NavigationDelegate {
 
     class Impl(
         private val sessionDelegate: SessionDelegate,
-        private val context: Context
+        private val intentFactory: IntentFactory
     ) : NavigationDelegate {
         override fun getActivityIntent() = if (sessionDelegate.isUserLoggedIn()) {
-            Intent(context, PostsListActivity::class.java)
+            intentFactory.create(PostsListActivity::class.java)
         } else {
-            Intent(context, LoginActivity::class.java)
+            intentFactory.create(LoginActivity::class.java)
         }
     }
 }

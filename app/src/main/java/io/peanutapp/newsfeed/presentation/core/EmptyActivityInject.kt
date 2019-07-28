@@ -26,7 +26,7 @@ object EmptyActivityModule {
 
     @JvmStatic
     @Provides
-    fun provideIntentFactory(@ActivityScope context: Context) : IntentFactory {
+    fun provideIntentFactory(@ActivityScope context: Context): IntentFactory {
         return IntentFactory.Impl(context)
     }
 
