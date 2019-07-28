@@ -11,12 +11,17 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:name=".core.application.PostsApplication"
-            android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".presentation.postslist.PostsListActivity">
+            android:theme="@style/AppTheme.NoTitle"
+            tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".presentation.EmptyActivity"
+                  android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".presentation.postslist.PostsListActivity"/>
+        <activity android:name=".presentation.login.LoginActivity"
+                  android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 </manifest>
