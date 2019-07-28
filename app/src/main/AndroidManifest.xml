@@ -13,7 +13,7 @@
             android:name=".core.application.PostsApplication"
             android:theme="@style/AppTheme.NoTitle"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".presentation.EmptyActivity"
+        <activity android:name=".presentation.core.EmptyActivity"
                   android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
