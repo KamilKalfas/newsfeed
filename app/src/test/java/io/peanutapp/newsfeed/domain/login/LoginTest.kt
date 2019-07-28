@@ -3,6 +3,7 @@ package io.peanutapp.newsfeed.domain.login
 import io.mockk.verify
 import io.peanutapp.newsfeed.BaseTest
 import io.peanutapp.newsfeed.core.DispatcherProvider
+import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
@@ -18,7 +19,7 @@ class LoginTest : BaseTest() {
         val username = "myusername"
         val password = "mypaswword"
 
-        subject(Login.Params(username, password))
+        runBlocking { subject(Login.Params(username, password)) }
 
         verify(exactly = 1) {
             loginDelegate.login(capture(capturedValues), capture(capturedValues))

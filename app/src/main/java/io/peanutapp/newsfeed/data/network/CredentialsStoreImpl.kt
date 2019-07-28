@@ -1,9 +1,9 @@
-package io.peanutapp.newsfeed.data.postslist.network
+package io.peanutapp.newsfeed.data.network
 
 import io.peanutapp.newsfeed.core.CredentialsPrefs
 import io.peanutapp.newsfeed.domain.network.CredentialsProvider
 
-class CredentialsStore(
+class CredentialsStoreImpl(
     credentialsPrefs: CredentialsPrefs
 ) : CredentialsProvider.Store {
     override val user = credentialsPrefs.getUser()

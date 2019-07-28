@@ -13,7 +13,7 @@ class Login @Inject constructor(
     override val dispatcher: CoroutineDispatcher
         get() = dispatcherProvider.provideIoDispatcher()
 
-    override fun invoke(params: Params) {
+    override suspend fun invoke(params: Params) {
         loginDelegate.login(params.username, params.password)
     }
 

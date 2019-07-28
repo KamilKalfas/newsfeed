@@ -1,19 +1,18 @@
 package io.peanutapp.newsfeed.data.postslist
 
-import io.mockk.every
-import io.mockk.slot
-import io.mockk.verify
+import io.mockk.*
 import io.peanutapp.newsfeed.BaseTest
 import io.peanutapp.newsfeed.data.postslist.PostsRepositoryImpl
 import io.peanutapp.newsfeed.domain.PostsDataSource
 import io.peanutapp.newsfeed.domain.PostsDataSourceFactory
+import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
 class PostsRepositoryImplTest : BaseTest() {
 
     private val postsDataSourceFactory: PostsDataSourceFactory = mockk()
-    private val postsDataSource : PostsDataSource = mockk()
+    private val postsDataSource: PostsDataSource = mockk()
     private val subject = PostsRepositoryImpl(postsDataSourceFactory)
 
     @Test
@@ -21,10 +20,11 @@ class PostsRepositoryImplTest : BaseTest() {
         val params = "params"
         val slot = slot<String>()
         every { postsDataSourceFactory.create() } returns postsDataSource
-        every { postsDataSource.get(any()) } returns listOf()
+        coEvery { postsDataSource.get(any()) } returns listOf()
 
-        assertThat(subject.getPosts(params))
-        verify(exactly = 1) {
+        runBlocking { subject.getPosts(params) }
+
+        coVerify(exactly = 1) {
             postsDataSourceFactory.create()
             postsDataSource.get(capture(slot))
         }

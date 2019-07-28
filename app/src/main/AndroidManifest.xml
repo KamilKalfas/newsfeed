@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools" package="io.peanutapp.newsfeed">
+          xmlns:tools="http://schemas.android.com/tools"
+          tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
+          package="io.peanutapp.newsfeed">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+            android:usesCleartextTraffic="true"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:name=".core.application.PostsApplication"
-            android:theme="@style/AppTheme.NoTitle"
-            tools:ignore="GoogleAppIndexingWarning">
+            android:theme="@style/AppTheme.NoTitle">
         <activity android:name=".presentation.core.EmptyActivity"
                   android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>

@@ -1,14 +1,14 @@
-package io.peanutapp.newsfeed.data.postslist.network
+package io.peanutapp.newsfeed.data.network
 
 import io.mockk.verify
 import io.peanutapp.newsfeed.BaseTest
 import io.peanutapp.newsfeed.core.CredentialsPrefs
 import org.junit.Test
 
-class CredentialsStoreTest : BaseTest() {
+class CredentialsStoreImplTest : BaseTest() {
 
     private val credentialsPrefs: CredentialsPrefs = mockk()
-    private val subject = CredentialsStore(credentialsPrefs)
+    private val subject = CredentialsStoreImpl(credentialsPrefs)
 
     @Test
     fun `user value evaluates credentialsPrefs getUser`() {

@@ -5,11 +5,12 @@ import java.util.concurrent.TimeUnit
 interface NetworkServiceConfig {
     val host: String
     val timeouts: Timeouts
-    val authPolicy: AuthPolicy<Any>
 
     interface Timeouts {
-        val connectTimeout : Pair<Long, TimeUnit>
-        val writeTimeout : Pair<Long, TimeUnit>
-        val readTimeout : Pair<Long, TimeUnit>
+        val connectTimeout : Timeout
+        val writeTimeout : Timeout
+        val readTimeout : Timeout
+
+        data class Timeout(val value: Long, val timeUnit: TimeUnit)
     }
 }

@@ -11,5 +11,5 @@ class PostsRepositoryImpl(
         postsDataSourceFactory.create()
     }
 
-    override fun getPosts(cursor: String) = dataSource.get(cursor)
+    override suspend fun getPosts(cursor: String) = dataSource.get(cursor)
 }

@@ -1,14 +1,14 @@
 package io.peanutapp.newsfeed.data.postslist
 
-import io.mockk.every
+import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.slot
-import io.mockk.verify
 import io.peanutapp.newsfeed.BaseTest
-import io.peanutapp.newsfeed.data.postslist.CloudDataSource
 import io.peanutapp.newsfeed.data.postslist.entity.FeedResponse
 import io.peanutapp.newsfeed.data.postslist.entity.Paging
 import io.peanutapp.newsfeed.data.postslist.entity.PostEntity
 import io.peanutapp.newsfeed.domain.network.PostsService
+import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
@@ -28,11 +28,11 @@ class CloudDataSourceTest : BaseTest() {
             ),
             Paging("")
         )
-        every { postsService.getPosts(any()) } returns response
+        coEvery { postsService.getPosts(any()) } returns response
 
-        val result = subject.get(params)
+        val result = runBlocking { subject.get(params) }
 
-        verify { postsService.getPosts(capture(slot)) }
+        coVerify { postsService.getPosts(capture(slot)) }
         assertThat(slot.captured).isEqualTo(params)
         assertThat(result).hasSize(2)
         assertThat(result[0].author).isEqualTo("author1")
