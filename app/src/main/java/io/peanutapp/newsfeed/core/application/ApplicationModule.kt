@@ -57,4 +57,11 @@ object ApplicationModule {
     fun provideSessionDelegate(credentialsPrefs: CredentialsPrefs): SessionDelegate {
         return SessionDelegateImpl(credentialsPrefs)
     }
+
+    @JvmStatic
+    @Provides
+    @Singleton
+    fun provideIntentFactory(@ApplicationScope context: Context): IntentFactory {
+        return IntentFactory.Impl(context)
+    }
 }

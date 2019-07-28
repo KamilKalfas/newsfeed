@@ -26,12 +26,6 @@ object EmptyActivityModule {
 
     @JvmStatic
     @Provides
-    fun provideIntentFactory(@ActivityScope context: Context): IntentFactory {
-        return IntentFactory.Impl(context)
-    }
-
-    @JvmStatic
-    @Provides
     fun provideNavigationDelegate(sessionDelegate: SessionDelegate, intentFactory: IntentFactory): NavigationDelegate {
         return NavigationDelegate.Impl(sessionDelegate, intentFactory)
     }
