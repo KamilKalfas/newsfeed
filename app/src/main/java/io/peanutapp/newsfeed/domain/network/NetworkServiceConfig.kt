@@ -8,8 +8,8 @@ interface NetworkServiceConfig {
     val authPolicy: AuthPolicy<Any>
 
     interface Timeouts {
-        val connectTimeout : Pair<Int, TimeUnit>
-        val writeTimeout : Pair<Int, TimeUnit>
-        val readTimeout : Pair<Int, TimeUnit>
+        val connectTimeout : Pair<Long, TimeUnit>
+        val writeTimeout : Pair<Long, TimeUnit>
+        val readTimeout : Pair<Long, TimeUnit>
     }
 }

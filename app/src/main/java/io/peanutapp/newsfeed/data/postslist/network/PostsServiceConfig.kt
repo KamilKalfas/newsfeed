@@ -12,8 +12,8 @@ class PostsServiceConfig(
     override val host = "http://exercice.production.backend.teampeanut.com"
 
     override val timeouts = object : Timeouts {
-        override val connectTimeout = 10 to TimeUnit.SECONDS
-        override val writeTimeout = 10 to TimeUnit.SECONDS
-        override val readTimeout = 10 to TimeUnit.SECONDS
+        override val connectTimeout = 10L to TimeUnit.SECONDS
+        override val writeTimeout = 10L to TimeUnit.SECONDS
+        override val readTimeout = 10L to TimeUnit.SECONDS
     }
 }

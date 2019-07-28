@@ -4,7 +4,7 @@ import io.peanutapp.newsfeed.domain.PostsDataSource
 import io.peanutapp.newsfeed.domain.PostsDataSourceFactory
 import io.peanutapp.newsfeed.domain.network.PostsService
 
-class PostDataSourceFactoryImpl (
+class PostsDataSourceFactoryImpl (
     private val postsService: PostsService
 ): PostsDataSourceFactory {
 

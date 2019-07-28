@@ -1,14 +1,10 @@
 package io.peanutapp.newsfeed.core.application
 
-import android.app.Application
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasAndroidInjector
-import javax.inject.Inject
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
 
-class PostsApplication : Application(), HasAndroidInjector {
-
-    @Inject
-    lateinit var androidInjector : DispatchingAndroidInjector<Any>
-
-    override fun androidInjector() = androidInjector
+class PostsApplication : DaggerApplication() {
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        return DaggerApplicationComponent.factory().create(this)
+    }
 }

@@ -5,10 +5,10 @@ import io.peanutapp.newsfeed.domain.network.PostsService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
-class PostDataSourceFactoryImplTest : BaseTest() {
+class PostsDataSourceFactoryImplTest : BaseTest() {
 
     private val postsService: PostsService = mockk()
-    private val subject = PostDataSourceFactoryImpl(postsService)
+    private val subject = PostsDataSourceFactoryImpl(postsService)
 
     @Test
     fun `create returns cloud datasource`() {
