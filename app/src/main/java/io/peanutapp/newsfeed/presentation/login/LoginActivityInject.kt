@@ -43,10 +43,10 @@ object LoginActivityModule {
     @Provides
     @ActivityScope
     fun provideLoginInteractor(
-        dispatcherProvider: DispatcherProvider,
-        loginDelegate: LoginDelegate
+        loginDelegate: LoginDelegate,
+        dispatcherProvider: DispatcherProvider
     ): Interactor<Login.Params, Unit> {
-        return Login(dispatcherProvider, loginDelegate)
+        return Login(loginDelegate, dispatcherProvider)
     }
 }
 

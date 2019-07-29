@@ -26,7 +26,7 @@ class CloudDataSourceTest : BaseTest() {
                 PostEntity("1", "author1", "title1", "body1"),
                 PostEntity("2", "author2", "title2", "body2")
             ),
-            Paging("")
+            Paging("123")
         )
         coEvery { postsService.getPosts(any()) } returns response
 
@@ -34,12 +34,13 @@ class CloudDataSourceTest : BaseTest() {
 
         coVerify { postsService.getPosts(capture(slot)) }
         assertThat(slot.captured).isEqualTo(params)
-        assertThat(result).hasSize(2)
-        assertThat(result[0].author).isEqualTo("author1")
-        assertThat(result[0].title).isEqualTo("title1")
-        assertThat(result[0].body).isEqualTo("body1")
-        assertThat(result[1].author).isEqualTo("author2")
-        assertThat(result[1].title).isEqualTo("title2")
-        assertThat(result[1].body).isEqualTo("body2")
+        assertThat(result.posts).hasSize(2)
+        assertThat(result.posts[0].author).isEqualTo("author1")
+        assertThat(result.posts[0].title).isEqualTo("title1")
+        assertThat(result.posts[0].body).isEqualTo("body1")
+        assertThat(result.posts[1].author).isEqualTo("author2")
+        assertThat(result.posts[1].title).isEqualTo("title2")
+        assertThat(result.posts[1].body).isEqualTo("body2")
+        assertThat(result.paginationCursor).isEqualTo("123")
     }
 }

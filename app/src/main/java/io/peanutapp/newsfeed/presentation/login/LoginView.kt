@@ -15,6 +15,12 @@ class LoginView @Inject constructor() : ViewContract<LoginView.State> {
     private var password = ""
     val loginAction = ObservableField<() -> Unit>()
 
+
+    private var state by Delegates.observable<State>(
+        initialValue = State.Uninitialised,
+        onChange = { _, _, newState -> onChange(newState) }
+    )
+
     override fun bind(activity: AppCompatActivity, callback: ViewContract.Callback) {
         activityRef = WeakReference(activity)
         callback.onViewBind()
@@ -25,11 +31,6 @@ class LoginView @Inject constructor() : ViewContract<LoginView.State> {
     override fun changeState(newState: State) {
         state = newState
     }
-
-    private var state by Delegates.observable<State>(
-        initialValue = State.Uninitialised,
-        onChange = { _, _, newState -> onChange(newState) }
-    )
 
     private fun onChange(newState: State) {
         when (newState) {

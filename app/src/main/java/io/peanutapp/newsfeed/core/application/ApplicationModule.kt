@@ -27,8 +27,8 @@ object ApplicationModule {
     @Provides
     @Singleton
     fun provideDispatcherProvider() = object : DispatcherProvider {
-        override fun provideMainDispatcher(): CoroutineDispatcher = Dispatchers.Main
-        override fun provideIoDispatcher(): CoroutineDispatcher = Dispatchers.IO
+        override fun main(): CoroutineDispatcher = Dispatchers.Main
+        override fun io(): CoroutineDispatcher = Dispatchers.IO
     }
 
     @JvmStatic

@@ -2,29 +2,31 @@ package io.peanutapp.newsfeed.presentation.postslist
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import dagger.android.AndroidInjection
 import io.peanutapp.newsfeed.R
-import io.peanutapp.newsfeed.core.DispatcherProvider
-import io.peanutapp.newsfeed.domain.postslist.GetNewsFeed
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
+import io.peanutapp.newsfeed.databinding.ActivityPostsListBinding
 import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
-class PostsListActivity : AppCompatActivity(), CoroutineScope {
-
-    @Inject
-    lateinit var dispatcherProvider: DispatcherProvider
+class PostsListActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var getNewsFeed: GetNewsFeed
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    override val coroutineContext: CoroutineContext
-        get() = Job() + dispatcherProvider.provideMainDispatcher()
+    private val postsViewModel by lazy {
+        ViewModelProviders.of(this, viewModelFactory)[PostsListViewModel::class.java]
+    }
+
+    private lateinit var binding: ActivityPostsListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
-        setContentView(R.layout.activity_posts_list)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_posts_list)
+        binding.view = postsViewModel.view.apply {
+            bind(this@PostsListActivity, postsViewModel)
+        }
     }
 }

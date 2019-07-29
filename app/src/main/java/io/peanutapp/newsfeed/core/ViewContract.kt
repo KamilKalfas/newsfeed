@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 
 interface ViewContract<State> {
     fun bind(activity: AppCompatActivity, callback: Callback)
-    fun changeState(newState: State)
     fun unbind()
+    fun changeState(newState: State)
 
     interface Callback {
         fun onViewBind()

@@ -5,6 +5,7 @@ import io.peanutapp.newsfeed.BaseTest
 import io.peanutapp.newsfeed.data.postslist.PostsRepositoryImpl
 import io.peanutapp.newsfeed.domain.PostsDataSource
 import io.peanutapp.newsfeed.domain.PostsDataSourceFactory
+import io.peanutapp.newsfeed.domain.postslist.entity.PostsRepositoryResult
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
@@ -20,7 +21,10 @@ class PostsRepositoryImplTest : BaseTest() {
         val params = "params"
         val slot = slot<String>()
         every { postsDataSourceFactory.create() } returns postsDataSource
-        coEvery { postsDataSource.get(any()) } returns listOf()
+        coEvery { postsDataSource.get(any()) } returns PostsRepositoryResult(
+            posts = emptyList(),
+            paginationCursor = ""
+        )
 
         runBlocking { subject.getPosts(params) }
 

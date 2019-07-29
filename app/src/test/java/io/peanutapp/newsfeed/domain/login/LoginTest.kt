@@ -11,7 +11,7 @@ class LoginTest : BaseTest() {
 
     private val dispatcherProvider: DispatcherProvider = mockk()
     private val loginDelegate: LoginDelegate = mockk()
-    private val subject = Login(dispatcherProvider, loginDelegate)
+    private val subject = Login(loginDelegate, dispatcherProvider)
 
     @Test
     fun `invoke calls loginDelegate login with params`() {
@@ -26,11 +26,5 @@ class LoginTest : BaseTest() {
         }
         assertThat(capturedValues[0]).isEqualTo(username)
         assertThat(capturedValues[1]).isEqualTo(password)
-    }
-
-    @Test
-    fun `login dispatcher is using IO to work on`() {
-        subject.dispatcher
-        verify { dispatcherProvider.provideIoDispatcher() }
     }
 }

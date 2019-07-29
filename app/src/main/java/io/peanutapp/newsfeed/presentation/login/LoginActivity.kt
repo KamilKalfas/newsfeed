@@ -7,14 +7,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import dagger.android.AndroidInjection
 import io.peanutapp.newsfeed.R
-import io.peanutapp.newsfeed.core.DispatcherProvider
 import io.peanutapp.newsfeed.databinding.ActivityLoginBinding
 import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity(){
-
-    @Inject
-    lateinit var dispatcherProvider: DispatcherProvider
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -32,6 +28,5 @@ class LoginActivity : AppCompatActivity(){
         binding.loginView = loginViewModel.view.apply {
             bind(this@LoginActivity, loginViewModel)
         }
-
     }
 }
