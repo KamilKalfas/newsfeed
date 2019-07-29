@@ -7,8 +7,7 @@ class PostItemViewFactory constructor(
 ) {
     fun create(params: Params): PostItemView {
         return provider.get().apply {
-            title.set(params.title)
-            author.set(params.author)
+            header.formattedHeader(params.title, params.author)
             body.set(params.body)
         }
     }

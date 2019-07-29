@@ -22,7 +22,9 @@ class PostsListView @Inject constructor(
 
     val callback = object : PaginationOnScrollListener.Callback {
         override fun loadNext() {
-            fetchDataAction.invoke(pagination)
+            if (pagination.isNotBlank()) {
+                fetchDataAction.invoke(pagination)
+            }
         }
     }
 

@@ -13,6 +13,7 @@ import io.peanutapp.newsfeed.domain.login.SessionDelegate
 import io.peanutapp.newsfeed.domain.network.CredentialsProvider
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import java.io.File
 import javax.inject.Singleton
 
 @Module(includes = [ApplicationModuleBinds::class])
@@ -22,6 +23,11 @@ object ApplicationModule {
     @Provides
     @ApplicationScope
     fun provideContext(application: PostsApplication): Context = application.applicationContext
+
+    @Provides
+    @Singleton
+    @JvmStatic
+    fun provideCacheDir(applicationContext: Context): File = applicationContext.cacheDir
 
     @JvmStatic
     @Provides

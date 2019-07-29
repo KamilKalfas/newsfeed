@@ -1,5 +1,6 @@
 package io.peanutapp.newsfeed.domain.network
 
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 
 const val AUTHORIZATION_HEADER = "Authorization"
@@ -7,7 +8,8 @@ const val AUTHORIZATION_HEADER = "Authorization"
 class HttpClientFactory(
     private val credentialsProvider: CredentialsProvider<String>,
     private val credentialsStore: CredentialsProvider.Store,
-    private val config: NetworkServiceConfig
+    private val config: NetworkServiceConfig,
+    private val cacheInterceptor: Interceptor
 ) {
     fun create(): OkHttpClient {
         return OkHttpClient.Builder()
@@ -23,6 +25,7 @@ class HttpClientFactory(
                         .build()
                     it.proceed(authenticatedRequest)
                 }
+                addInterceptor(cacheInterceptor)
             }.build()
     }
 }

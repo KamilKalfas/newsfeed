@@ -11,7 +11,7 @@ data class PostEntity(
     // title is a required field
     val title: String,
     // body is an optional field that might be missing from the response
-    val body: String = ""
+    val body: String?
 )
 
-fun PostEntity.toPost() = Post(author, title, body)
+fun PostEntity.toPost() = Post(author, title, body?:  "")
