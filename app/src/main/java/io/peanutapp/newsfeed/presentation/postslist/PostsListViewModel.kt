@@ -3,7 +3,9 @@ package io.peanutapp.newsfeed.presentation.postslist
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.peanutapp.newsfeed.core.ViewContract
+import io.peanutapp.newsfeed.domain.ResultState
 import io.peanutapp.newsfeed.domain.postslist.GetNewsFeed
+import io.peanutapp.newsfeed.domain.postslist.entity.PostsRepositoryResult
 import io.peanutapp.newsfeed.domain.then
 import io.peanutapp.newsfeed.domain.workAsync
 import kotlinx.coroutines.launch
@@ -27,7 +29,15 @@ class PostsListViewModel @Inject constructor(
     private fun fetchData(cursor: String) {
         viewModelScope.launch {
             workAsync(getNewsFeed, cursor) then {
-                postsListView.changeState(PostsListView.State.DataReceived(it.posts, it.paginationCursor))
+                when (it) {
+                    is ResultState.Success<*> -> {
+                        val data = it.data as PostsRepositoryResult
+                        val params = PostsListView.State.DataReceived(data.posts, data.paginationCursor)
+                        postsListView.changeState(params)
+                    }
+                    is ResultState.Failure -> postsListView.changeState(PostsListView.State.Error(it.error))
+                }
+
             }
         }
     }

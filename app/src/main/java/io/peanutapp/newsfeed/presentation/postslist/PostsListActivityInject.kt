@@ -9,17 +9,15 @@ import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 import dagger.multibindings.StringKey
 import io.peanutapp.newsfeed.core.ActivityScope
-import io.peanutapp.newsfeed.core.DispatcherProvider
 import io.peanutapp.newsfeed.core.ViewContract
 import io.peanutapp.newsfeed.core.viewmodel.ViewModelFactoryModule
 import io.peanutapp.newsfeed.data.postslist.PostsDataSourceFactoryImpl
 import io.peanutapp.newsfeed.data.postslist.PostsRepositoryImpl
-import io.peanutapp.newsfeed.domain.Interactor
 import io.peanutapp.newsfeed.domain.PostsDataSourceFactory
 import io.peanutapp.newsfeed.domain.PostsRepository
 import io.peanutapp.newsfeed.domain.network.PostsService
-import io.peanutapp.newsfeed.domain.postslist.GetNewsFeed
-import io.peanutapp.newsfeed.domain.postslist.entity.Post
+import io.peanutapp.newsfeed.presentation.postslist.recycler.PostItemView
+import io.peanutapp.newsfeed.presentation.postslist.recycler.PostItemViewFactory
 import javax.inject.Provider
 
 @Module
@@ -51,16 +49,6 @@ object PostsListActivityModule {
     @JvmStatic
     @Provides
     fun providePostItemViewFactory(provider: Provider<PostItemView>) = PostItemViewFactory(provider)
-
-//    @JvmStatic
-//    @Provides
-//    @ActivityScope
-//    fun provideGetNewsFeedInteractor(
-//        postsRepository: PostsRepository,
-//        dispatcherProvider: DispatcherProvider
-//    ): Interactor<String, PostsRepositoryResult> {
-//        return GetNewsFeed(postsRepository, dispatcherProvider)
-//    }
 }
 
 @Module
@@ -69,9 +57,6 @@ abstract class PostsListActivityBinds {
     @Binds
     @ActivityScope
     abstract fun bindContext(activity: PostsListActivity): Context
-
-//    @Binds
-//    abstract fun bindGetNewsFeed(getNewsFeed: GetNewsFeed): Interactor<String, PostsRepositoryResult>
 
     @Binds
     abstract fun bindPostsView(postsView: PostsListView): ViewContract<PostsListView.State>

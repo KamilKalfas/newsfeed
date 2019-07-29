@@ -3,7 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
   <data>
-    <variable name="view" type="io.peanutapp.newsfeed.presentation.postslist.PostItemView"/>
+    <variable name="view" type="io.peanutapp.newsfeed.presentation.postslist.recycler.PostItemView"/>
   </data>
     <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"

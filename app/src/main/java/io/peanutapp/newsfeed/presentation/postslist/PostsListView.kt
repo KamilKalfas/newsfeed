@@ -2,9 +2,11 @@ package io.peanutapp.newsfeed.presentation.postslist
 
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.ObservableField
 import io.peanutapp.newsfeed.core.ViewContract
 import io.peanutapp.newsfeed.domain.postslist.entity.Post
+import io.peanutapp.newsfeed.presentation.postslist.recycler.PaginationOnScrollListener
+import io.peanutapp.newsfeed.presentation.postslist.recycler.PostItemViewFactory
+import io.peanutapp.newsfeed.presentation.postslist.recycler.PostsAdapter
 import java.lang.ref.WeakReference
 import javax.inject.Inject
 import kotlin.properties.Delegates
@@ -12,13 +14,21 @@ import kotlin.properties.Delegates
 class PostsListView @Inject constructor(
     val adapter: PostsAdapter,
     private val postItemViewFactory: PostItemViewFactory
-): ViewContract<PostsListView.State> {
+) : ViewContract<PostsListView.State> {
     private lateinit var activityRef: WeakReference<AppCompatActivity>
     private var pagination = ""
-    val fetchDataAction = ObservableField<(String) -> Unit>()
+    var fetchDataAction: (String) -> Unit = {}
+        private set
+
+    val callback = object : PaginationOnScrollListener.Callback {
+        override fun loadNext() {
+            fetchDataAction.invoke(pagination)
+        }
+    }
+
     private var state by Delegates.observable<State>(
         initialValue = State.Uninitialised,
-        onChange = { _,_, newState -> onChange(newState)}
+        onChange = { _, _, newState -> onChange(newState) }
     )
 
     override fun bind(activity: AppCompatActivity, callback: ViewContract.Callback) {
@@ -33,9 +43,9 @@ class PostsListView @Inject constructor(
     }
 
     private fun onChange(newState: State) {
-        when(newState) {
+        when (newState) {
             is State.Init -> {
-                fetchDataAction.set { newState.fetchPostsAction.invoke(pagination) }
+                fetchDataAction = newState.fetchPostsAction
             }
             is State.DataReceived -> {
                 val mapped = newState.data.asSequence().map {
@@ -46,7 +56,7 @@ class PostsListView @Inject constructor(
                 adapter.notifyDataSetChanged()
                 pagination = newState.nextPagination
             }
-           is State.Error -> {
+            is State.Error -> {
                 activityRef.get()?.run {
                     Toast.makeText(this, "Oh no!\nSomething went wrong!", Toast.LENGTH_SHORT).show()
                 }

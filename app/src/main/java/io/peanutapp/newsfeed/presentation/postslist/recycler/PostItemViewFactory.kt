@@ -1,4 +1,4 @@
-package io.peanutapp.newsfeed.presentation.postslist
+package io.peanutapp.newsfeed.presentation.postslist.recycler
 
 import javax.inject.Provider
 
